@@ -54,7 +54,7 @@ anova(lm(blocdiff~factor(Institut),data=polls))
 houseeffects<-as.data.frame(summary(lm(blocdiff~factor(Institut),data=polls))$coefficients[2:8,1:2])
 names(houseeffects)<-c("est","se")
 houseeffects$house<-as.character(levels(as.factor(polls$Institut))[2:8])
-bdmean<-mean(polls$blocdiff)
+bdmean<-mean(polls$blocdiff,na.rm=T)
 
 t95<-1.96
 ggplot(houseeffects,aes(x=est-bdmean,y=reorder(house,est))) +
