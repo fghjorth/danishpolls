@@ -16,6 +16,7 @@ ck$days2elec[ck$valg=="fv15"]<-difftime(ck$date[ck$valg=="fv15"],ymd("2015-06-18
 
 ck$valg<-factor(ck$valg,labels=c("Løkke i '11","Helle i '15","Nyrup i '98"))
 
+require(ggplot2)
 ggplot(ck,aes(x=as.numeric(days2elec),y=blocshare,group=valg,fill=valg,color=valg)) +
   geom_point(size=3) +
   geom_smooth() +
@@ -24,7 +25,8 @@ ggplot(ck,aes(x=as.numeric(days2elec),y=blocshare,group=valg,fill=valg,color=val
   xlab("Dage til valget") +
   ylab("Blok-opbakning (pct.)") +
   scale_fill_manual(values=c("blue", "dark gray", "red")) +
-  scale_color_manual(values=c("blue", "black", "red"))
+  scale_color_manual(values=c("blue", "black", "red")) +
+  theme(legend.title=element_blank(),legend.position="right")
 
 setwd("~/GitHub/danishpolls")
 ggsave("comebackkidplot.pdf",width=11,height=6)
